@@ -1,0 +1,27 @@
+<div class="container login-container text-center">
+    <div class="animate__animated animate__fadeInDownBig card " style="width: 18rem;">
+        <img src="./../../../../assets/img/logo.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Hermes Admin App</h5>
+
+
+            <form (submit)="submitForm(f)" class="form-group" #f="ngForm">
+
+                <span *ngIf="f.submitted && f.form.controls['email'].errors" class="text-danger animate__animated animate__fadeIn">Email es Obligatorio!</span>
+                <br>
+                <label class="form" for="email">Email:</label>
+                <input (keypress.enter)="submitForm(f)"  name="email" email required [(ngModel)]="user.email" class="form-control" type="email">
+
+                <hr>
+
+                <span *ngIf="f.submitted && f.form.controls['password'].errors" class="text-danger animate__animated animate__fadeIn">Contraseña es Obligatoria!</span>
+                <br>
+                <label class="form" for="password">Contraseña:</label>
+                <input (keypress.enter)="submitForm(f)" name="password" required [(ngModel)]="user.password" class="form-control" type="password">
+
+                <button class="btn btn-primary mt-3" type="submit">Iniciar Sesión</button>
+            </form>
+
+        </div>
+    </div>
+</div>
