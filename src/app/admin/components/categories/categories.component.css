@@ -1,0 +1,15 @@
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.header i{
+font-size: 30px;
+}
+
+.header i:hover{
+  cursor: pointer;
+  color:red;
+  transition: 0.5s all ease-in-out;
+}

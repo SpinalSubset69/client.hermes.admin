@@ -1,0 +1,30 @@
+.category-dropdown{
+  width: 30vw;
+  padding: 5px;
+  position: absolute;
+  z-index: 100;
+}
+
+.category-item{
+  visibility: hidden;
+}
+
+.dropdown-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-items{
+  height: 0;
+  visibility: hidden;
+}
+
+.category-dropdown:hover .dropdown-items{
+  height: auto;
+  visibility: visible;
+}
+
+.dropdown-item:hover{
+  cursor: pointer;
+}

@@ -1,0 +1,15 @@
+<div class="modal-container animate__animated animate__fadeIn">
+  <div class="modal-content">
+    <div class="title">
+      <i class="fa fa-question-circle mx-2"></i>
+      <div>{{ info.title }}</div>
+    </div>
+    <div class="message mb-3">
+      <div>{{ info.message }}</div>
+    </div>
+    <div class="buttons">
+      <button (click)="confirm()" class="btn btn-danger mx-2">Si?</button>
+      <button (click)="cancel()" class="btn btn-secondary">Cancelar</button>
+    </div>
+  </div>
+</div>

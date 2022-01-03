@@ -1,0 +1,91 @@
+<div class="container mt-3 animate__animated animate__fadeIn">
+  <div class="header">
+    <h1>Agregar Reportero Nuevo</h1>
+    <i (click)="closeAddArticle()" class="fa fa-close"></i>
+  </div>
+  <hr />
+
+  <form (submit)="addReporter(f)" #f="ngForm">
+    <div class="row">
+      <div class="col-md-6">
+        <span
+          *ngIf="f.submitted && f.form.controls['name'].errors"
+          class="text-danger animate__animated animate__fadeIn"
+          >Nombre es Obligatorio!</span
+        >
+        <br />
+        <label class="form" for="name">Nombre:</label>
+        <input
+          name="name"
+          required
+          [(ngModel)]="reporter.name"
+          class="form-control"
+          type="text"
+        />
+      </div>
+      <div class="col-md-6">
+        <span
+          *ngIf="f.submitted && f.form.controls['user_name'].errors"
+          class="text-danger animate__animated animate__fadeIn"
+          >User Name es Obligatorio!</span
+        >
+        <br />
+        <label class="form" for="user_name">Nombre de Usuario:</label>
+        <input
+          name="user_name"
+          required
+          [(ngModel)]="reporter.user_name"
+          class="form-control"
+          type="text"
+        />
+      </div>
+    </div>
+
+    <hr />
+
+    <span
+      *ngIf="f.submitted && f.form.controls['email'].errors"
+      class="text-danger animate__animated animate__fadeIn"
+      >Email es Obligatorio!</span
+    >
+    <br />
+    <label class="form" for="email">Email:</label>
+    <input
+      name="email"
+      email
+      required
+      [(ngModel)]="reporter.email"
+      class="form-control"
+      type="email"
+    />
+
+    <hr />
+
+    <span
+      *ngIf="f.submitted && f.form.controls['password'].errors"
+      class="text-danger animate__animated animate__fadeIn"
+      >Contraseña es Obligatoria!</span
+    >
+    <br />
+    <label class="form" for="password">Contraseña:</label>
+    <input
+      name="password"
+      required
+      [(ngModel)]="reporter.password"
+      class="form-control"
+      type="password"
+    />
+
+    <label class="form mt-3">Imagen:</label>
+    <input
+      (change)="onFileSelect($event)"
+      id="reporterImage"
+      class="form-control"
+      type="file"
+    />
+
+    <div class="d-grid gap-2 mt-3">
+      <button class="btn btn-primary" type="submit">Agregar Reportero</button>
+    </div>
+  </form>
+</div>

@@ -16,25 +16,41 @@ export class LoginComponent implements OnInit {
     this.user = new UserLogin('', '');
    }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
+
+    //If user has been loged in
+    if(this.authService.validateUserToken()){
+      this.router.navigateByUrl('/admin');
+    }
     if('email' in localStorage){
       this.user.email = localStorage.getItem('email') as string;
     }
   }
 
   submitForm(form:NgForm){
-    console.log(form);
     if(form.invalid){
       return;
     }
 
     this.authService.login(this.user).subscribe(resp => {
-      this.router.navigate(['home']);
+      console.log(resp);
+      this.router.navigateByUrl('/admin');
     }, (err:any) => {
-      console.log(err);
-      this.toastr.error(err.error.message, 'Credentials',{
-        positionClass: 'toast-top-right'
-      })
+      if(err.message.includes('Credentials')){
+        this.showErrorToastr('Credenciales incorrects', 'Credenciales');
+        return;
+      }
+
+      if(err.message.includes('Http failure')){
+        this.showErrorToastr('No se ha podido establecer contacto con el servidor', 'Error');
+      }
+
+    });
+  }
+
+  private showErrorToastr(message:string, title:string){
+    this.toastr.error(message, title,{
+      positionClass: 'toast-top-right'
     });
   }
 }

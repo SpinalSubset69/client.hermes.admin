@@ -1,0 +1,50 @@
+<div class="animate__animated animate__fadeIn">
+  <div class="header">
+    <h1>Categorías</h1>
+    <i (click)="closeCategories()" class="fa fa-close"></i>
+  </div>
+  <hr />
+
+  <div class="row">
+    <div class="col-md-8">
+      <form (submit)="saveCategory(f)" #f="ngForm">
+        <div class="d-flex justify-content-evenly align-items-center">
+          <input
+            required
+            name="category"
+            [(ngModel)]="category.name"
+            class="form"
+            type="text"
+          />
+          <button class="btn btn-primary" type="submit">{{ status }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="container d-flex justify-content-center">
+    <table class="table bordered">
+      <thead>
+        <tr>
+          <td>Id Categoría:</td>
+          <td>Nombre:</td>
+          <td>Acciones</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories">
+          <td>{{ category.id }}</td>
+          <td>{{ category.name }}</td>
+          <td>
+            <button
+              (click)="editCategory(category)"
+              class="btn btn-secondary "
+            >
+              Editar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

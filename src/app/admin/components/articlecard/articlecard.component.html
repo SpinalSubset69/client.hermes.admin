@@ -1,0 +1,30 @@
+<app-modal (selection)="handleModalOutput($event)" [info]="modalInfo" *ngIf="showModal"></app-modal>
+<div class="card mb-3 animate__animated animate__fadeIn article-card"  *ngIf="article && reporter">
+  <div class="card-body">
+    <div class="header">
+      <div class="title">
+        <h4>{{ article.title | articletitle }}</h4>
+      </div>
+      <div class="actions">
+        <i class="fa fa-edit text-primary"></i>
+        <i (click)="removeArticle()" class="fa fa-remove pb-1 mx-2 text-danger"></i>
+      </div>
+    </div>
+    <p>{{ article.summary }}</p>
+
+    <div class="img-container">
+      <img *ngIf="article.images[0]"
+        class="article-img"
+        src="{{ article.images[0].name | articleimage }}"
+        alt=""
+      />
+    </div>
+    <div class="article-span">
+      <div>
+        <img class="reporter-img" src="{{ reporter.image  }}" alt="" />
+        {{ reporter.name  }}
+      </div>
+      <div>{{ article.created_At | date }}</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<div id="dropdown" *ngIf="categories" class="category-dropdown card">
+  <div class="dropdown-header">
+  {{ categorySelected }} <i class="fa fa-bars"></i>
+  </div>
+  <div class="dropdown-items">
+    <div (click)="selectCategory(category)" *ngFor="let category of categories" class="dropdown-item">
+      {{ category.name }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,127 @@
+.sidebar-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* User info */
+.user-info {
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 20%;
+  text-align: center;
+  width: 100%;
+}
+
+.user-info p {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.user-info img {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+/* User info */
+
+.som {
+  height: 60%;
+}
+
+/*Menú*/
+.menu-options {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 50vh;
+}
+
+.menu-option:hover {
+  cursor: pointer;
+}
+
+.menu-option {
+  background: var(--menu-option-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.menu-option a {
+  text-decoration: none;
+  color: var(--color-white);
+}
+
+.menu-option a i {
+  margin-right: 2px;
+  font-size: 12px;
+}
+
+.menu-option:hover {
+  background: var(--menu-option-hover);
+  transition: 0.5s all ease-in-out;
+}
+/*Menú*/
+
+/*Sign Out*/
+
+.menu-options-sign-out {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+}
+.sign-out {
+  width: 100%;
+  height: 20%;
+}
+
+.close:hover {
+  cursor: pointer;
+}
+
+/*-------------------------------Media Query/*-------------------------------  */
+
+@media (max-width: 1300px) {
+  .menu-options {
+    font-size: 12px;
+  }
+
+  .menu-options-sign-out {
+    font-size: 12px;
+  }
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  .user-info-detail {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .close{
+    transform: translateX(30px);
+  }
+  .user-info-detail img {
+    transform: translateX(20px);
+  }
+
+}

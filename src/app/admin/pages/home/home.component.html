@@ -1,0 +1,50 @@
+
+<div class="home-container">
+  <div class="row">
+    <app-navbar></app-navbar>
+  </div>
+
+
+
+  <div class="row">
+    <!--SideBar Section-->
+    <div id="sidebar" class="col-md-2 sidebar-container">
+      <app-sidebar
+        (showAddReporter)="AddReporterComponent($event)"
+        (showAddArticle)="AddArticleComponent($event)"
+        (showAddCategory)="AddCategoryComponent($event)"
+        [reporter]="reporter"
+      ></app-sidebar>
+    </div>
+    <!--SideBar Section-->
+
+    <!--Content Section-->
+    <div id="content" class="content-wrapper col-md-10">
+
+      <div *ngIf="bars" class="bars">
+        <i (click)="showSideBarMediaQuery()" class="fa fa-bars fa-2x "></i>
+      </div>
+
+
+      <div class="content-pages">
+        <app-addreporter
+        (closeContent)="CloseContent($event)"
+        *ngIf="addReporter"
+      ></app-addreporter>
+      <app-addarticle
+        (closeContent)="CloseContent($event)"
+        *ngIf="addArticle"
+      ></app-addarticle>
+      <app-categories
+        (closeContent)="CloseContent($event)"
+        *ngIf="addCategory"
+      ></app-categories>
+      <app-articles
+        *ngIf="reporter && articlesMainContent"
+        [reporter]="reporter"
+      ></app-articles>
+      </div>
+    </div>
+    <!--Content Section-->
+  </div>
+</div>

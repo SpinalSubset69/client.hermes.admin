@@ -1,0 +1,31 @@
+<div *ngIf="articles.length === 0 && !isSerching" class="no-articles">
+  <h1>Aún no has publicado artículos!!</h1>
+  <hr>
+</div>
+
+<div class="container mt-3 animate__animated animate__fadeIn articles-wrapper" *ngIf="(reporter && articles && articles.length > 0 || isSerching)">
+  <div class="header">
+    <h1>Bienvenido(a) {{reporter.userName}}</h1>
+    <div class="search-container">
+      <i class="fa fa-search fa-lg mx-2"></i>
+    <input #search (keypress)="handleSearch(search)" (keydown.backspace)="handleSearch(search)  " class="form-control" type="text">
+    </div>
+  </div>
+  <hr>
+
+
+  <div class="row">
+    <div  *ngFor="let article of articles" class="col-md-6">
+      <app-articlecard (updateArticles)="updateArticlesListener($event)" [article]="article" [reporter]="reporter"></app-articlecard>
+    </div>
+  </div>
+
+  <div *ngIf="articlesPagination" class="pagination">
+    <div>Total de Artículo publicados: <strong>{{ articlesPagination.count }}</strong></div>
+    <i (click)="previousPage()" class="fa fa-arrow-circle-o-left fa-2x"></i>
+    <div>Página: {{ articlesPagination.pageIndex }} de {{ (articlesPagination.count / articlesPagination.pageSize) | round }}</div>
+    <i (click)="nextPage()" class="fa fa-arrow-circle-o-right fa-2x "></i>
+
+  </div>
+
+</div>

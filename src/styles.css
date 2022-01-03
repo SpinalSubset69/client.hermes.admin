@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root{
+  --background-color: #2c2c2c;
+  --background-black: #121212;
+  --menu-option-color: #F05454;
+  --menu-option-hover: #121212;
+  --color-white: white;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+
+*{
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  overflow: hidden;
+}
+

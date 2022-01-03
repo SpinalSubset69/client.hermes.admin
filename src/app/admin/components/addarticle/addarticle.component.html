@@ -1,0 +1,100 @@
+<div class="container mt-3 animate__animated animate__fadeIn">
+  <div class="header">
+    <h1>Agregar Artículo Nuevo</h1>
+    <i (click)="closeAddArticle()" class="fa fa-close"></i>
+  </div>
+  <hr>
+  <form (submit)="addArticle(f)" #f="ngForm">
+    <span
+      *ngIf="f.submitted && f.form.controls['title'].errors"
+      class="text-danger animate__animated animate__fadeIn"
+      >Título es Obligatorio!</span
+    >
+    <br />
+    <label class="form" for="title">Título del Artículo:</label>
+    <input
+      name="title"
+      required
+      [(ngModel)]="article.title"
+      class="form-control"
+      type="text"
+    />
+
+    <hr />
+
+    <div class="row d-flex align-items-center">
+      <div class="col-md-6">
+        <span
+        *ngIf="f.submitted && f.form.controls['summary'].errors"
+        class="text-danger animate__animated animate__fadeIn"
+        >Resumen es obligatorio!</span
+      >
+      <br />
+      <label class="form" for="summay">Resumen de Nota:</label>
+      <input
+        name="summary"
+        required
+        [(ngModel)]="article.summary"
+        class="form-control"
+        type="text"
+      />
+
+      </div>
+
+      <div class="col-md-6">
+        <app-categorydropdown (onCategorySelect)="categorySelected($event)" ></app-categorydropdown>
+      </div>
+    </div>
+
+    <hr />
+
+    <span
+      *ngIf="f.submitted && f.form.controls['content'].errors"
+      class="text-danger animate__animated animate__fadeIn"
+      >Contenido es Obligatorio!</span
+    >
+    <br />
+    <label class="form" for="content">Contenido del Artículo:</label>
+    <textarea
+      name="content"
+      required
+      [(ngModel)]="article.content"
+      class="form-control"
+    ></textarea>
+
+    <hr />
+
+    <label class="form mt-3">Imagen:</label>
+    <input
+      (change)="onFileSelect($event)"
+      id="reporterImage"
+      class="form-control"
+      type="file"
+    />
+    <br />
+    <input
+      (change)="onFileSelect($event)"
+      id="reporterImage"
+      class="form-control"
+      type="file"
+    />
+    <br />
+    <input
+      (change)="onFileSelect($event)"
+      id="reporterImage"
+      class="form-control"
+      type="file"
+    />
+    <br />
+    <input
+      (change)="onFileSelect($event)"
+      id="reporterImage"
+      class="form-control"
+      type="file"
+    />
+
+    <div class="d-grid gap-2 mt-3">
+      <button class="btn btn-primary" type="submit">Agregar Artículo</button>
+    </div>
+  </form>
+</div>

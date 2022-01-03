@@ -1,0 +1,52 @@
+.header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.pagination{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.pagination i{
+  cursor: pointer;
+}
+
+.pagination i:hover{
+  color: black;
+  transition: all 0.3s ease;
+}
+
+.no-articles{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.search-container{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 50%;
+}
+
+.search-container input{
+  width: 20vw;
+}
+
+
+@media (max-width: 600px) {
+  .header{
+    margin-left: 5px;
+  }
+
+  .header h1{
+font-size: 18px;
+font-weight: 600;
+  }
+}

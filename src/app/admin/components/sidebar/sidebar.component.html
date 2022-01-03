@@ -1,0 +1,46 @@
+<div *ngIf="reporter" class="sidebar-wrapper animate__animated animate__fadeIn">
+  <div class="user-info">
+    <div class="user-info-detail">
+      <img src="{{ reporter.image }}" alt="" />
+
+      <div *ngIf="close" (click)="closeSideBar()" class="close">
+        <i  class="fa fa-close fa-2x "></i>
+      </div>
+
+    </div>
+    <p>{{ reporter.name }}</p>
+  </div>
+
+  <div class="som">
+    <ul class="menu-options">
+      <li *ngIf="reporter.rol === 'Admin'" (click)="addReporterShow()" class="menu-option">
+        <a >
+          <i class="fa fa-plus"></i>
+          Añadir Reportero
+        </a>
+      </li>
+      <li class="menu-option">
+        <a (click)="addArticleShow()">
+          <i class="fa fa-plus"></i>
+          Añadir Artículo
+        </a>
+      </li>
+      <li *ngIf="reporter.rol === 'Admin'" class="menu-option">
+        <a (click)="addCategoryShow()">Categorías</a>
+      </li>
+    </ul>
+  </div>
+
+
+  <div class="som">
+    <ul class="menu-options-sign-out">
+      <li class="menu-option">
+        <a (click)="logout()">
+          <i class="fa fa-sign-out"></i>
+          Cerrar Sesión
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<app-modal *ngIf="showModal" [info]="modalInfo" (selection)="handleModalOutput($event)"></app-modal>
