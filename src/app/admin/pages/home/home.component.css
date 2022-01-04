@@ -28,6 +28,17 @@ left: 20px;
   transform: all 0.4s ease-in-out;
 }
 
+ /* Hide scrollbar for Chrome, Safari and Opera */
+ .content-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.content-wrapper {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 /*-------------------------------Media Query/*-------------------------------  */
 
 @media (max-width: 770px) {

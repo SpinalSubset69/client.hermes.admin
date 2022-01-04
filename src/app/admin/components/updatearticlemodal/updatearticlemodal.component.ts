@@ -1,6 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { IArticle } from 'src/app/interfaces/article';
 import { IReporter } from 'src/app/interfaces/reporter';
 import { Article } from 'src/app/models/article';
 import { Category } from 'src/app/models/category';
@@ -8,30 +10,35 @@ import { ImageUploadRequest } from 'src/app/models/ImageUploadRequest';
 import { ArticleService } from 'src/app/services/article.service';
 import { ReporterService } from 'src/app/services/reporter.service';
 import { toBase64Async } from 'src/app/Util/FileHandler';
-
 @Component({
-  selector: 'app-addarticle',
-  templateUrl: './addarticle.component.html',
-  styleUrls: ['./addarticle.component.css']
+  selector: 'app-updatearticlemodal',
+  templateUrl: './updatearticlemodal.component.html',
+  styleUrls: ['./updatearticlemodal.component.css']
 })
-export class AddarticleComponent implements OnInit {
-  article:Article;
+export class UpdatearticlemodalComponent implements OnInit {
+
+  modalRef?: BsModalRef;
+  //article:Article;
   reporter!:IReporter;
   images:ImageUploadRequest[] = [];
-  @Output() closeContent = new EventEmitter<boolean>();
-
-  constructor(
-    private toastr:ToastrService,
+  @Input() article!:Article;
+  @Input() articleId!:number;
+  @Output() updated = new EventEmitter<boolean>();
+  constructor(private modalService: BsModalService,  private toastr:ToastrService,
     private articleService:ArticleService,
-    private reporterService:ReporterService
-  ) {
+    private reporterService:ReporterService) {
     this.article = new Article('', '', '', 0)
-   }
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
 
   ngOnInit(): void {
+
     this.reporterService.getReporterByToken().subscribe(response => {
       this.reporter = response;
-    })
+    });
   }
 
   addArticle(form:NgForm){
@@ -59,42 +66,15 @@ export class AddarticleComponent implements OnInit {
       return;
     }
 
-    this.articleService.addArticle(this.article, this.reporter.id).subscribe(articleStored => {
-        this.articleService.addArticleImages(this.images, articleStored.id).subscribe(response => {
-          this.article = new Article('', '','',0);
-          this.showToastrSuccess('Artículo Guardado en la base de datos con éxito', 'Artículo');
-          this.closeContent.emit(true);
-        });
+    this.articleService.updateArticle(this.articleId, this.article).subscribe(response => {
+      this.showToastrSuccess('Articulo actualizado', 'Artículo');
     });
-
-
-  }
-
-  async onFileSelect($event:any){
-    const file:File = $event.target.files[0];
-
-    //Check if is an image
-    if(!file.type.includes('png') && !file.type.includes('jpg') && !file.type.includes('jpeg')){
-      $event.target.value = null;
-      this.showTastrError('Inserte Solo Imagenes', 'Imagen');
-      return;
-    }
-    const content = toBase64Async(file).then(contentString => {
-      return contentString;
-    });
-    const fileName = file.name;
-
-    const imageToUpload = new ImageUploadRequest(await content, fileName);
-
-    this.images.push(imageToUpload);
+    this.modalRef?.hide();
+    this.updated.emit(true);
   }
 
   categorySelected($event:Category){
     this.article.categoryId = $event.id;
-  }
-
-  closeAddArticle(){
-    this.closeContent.emit(true);
   }
 
   private showTastrError(message:string, title:string){
@@ -108,5 +88,4 @@ export class AddarticleComponent implements OnInit {
       positionClass: 'toast-top-right'
     })
   }
-
 }

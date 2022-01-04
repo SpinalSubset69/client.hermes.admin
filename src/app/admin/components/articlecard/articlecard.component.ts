@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { IArticle } from 'src/app/interfaces/article';
 import { Modal } from 'src/app/interfaces/modal';
 import { IReporter } from 'src/app/interfaces/reporter';
+import { Article } from 'src/app/models/article';
 import { ArticleService } from 'src/app/services/article.service';
 
 
@@ -17,10 +18,16 @@ export class ArticlecardComponent implements OnInit {
   @Output() updateArticles = new EventEmitter<boolean>();
   showModal:boolean = false;
   modalInfo!:Modal;
-  constructor(private articleService:ArticleService, private toastr:ToastrService) { }
+  articleToUpdate:Article;
+
+  constructor(private articleService:ArticleService, private toastr:ToastrService) {
+    this.articleToUpdate = new Article('','', '',0);
+   }
 
   ngOnInit(): void {
+    this.articleToUpdate = new Article(this.article.title, this.article.summary, this.article.content, 0);
   }
+
 
   removeArticle(){
    this.modalInfo = {
@@ -47,6 +54,17 @@ export class ArticlecardComponent implements OnInit {
         positionClass:'toast-top-rigth'
       })
     })
+  }
+
+  articleUpdate($event:boolean){
+    if($event){
+      this.articleService.getArticleById(this.article.id).subscribe(response => {
+        this.article = response;
+        this.toastr.success('Artículo Actualizado Con Éxito', 'Artículo',{
+          positionClass:'toast-top-rigth'
+        })
+      });
+    }
   }
 
 }

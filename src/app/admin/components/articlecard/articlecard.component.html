@@ -6,7 +6,8 @@
         <h4>{{ article.title | articletitle }}</h4>
       </div>
       <div class="actions">
-        <i class="fa fa-edit text-primary"></i>
+        <!-- <i class="fa fa-edit text-primary"></i> -->
+        <app-updatearticlemodal (updated)="articleUpdate($event)" [article]="articleToUpdate" [articleId]="article.id" class="update-modal"></app-updatearticlemodal>
         <i (click)="removeArticle()" class="fa fa-remove pb-1 mx-2 text-danger"></i>
       </div>
     </div>

@@ -35,6 +35,7 @@ export class SidebarComponent implements OnInit {
   }
 
   addReporterShow() {
+    console.log(this.reporter);
     this.showAddReporter.emit(true);
     if(this.width <= 770){
       this.hiddeSideBar();

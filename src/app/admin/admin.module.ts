@@ -18,7 +18,8 @@ import { RoundPipe } from './pipes/round.pipe';
 import { ModalComponent } from './components/modal/modal.component';
 import { ArticletitlePipe } from './pipes/articletitle.pipe';
 import { RolesdropdownComponent } from './components/rolesdropdown/rolesdropdown.component';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown'
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { UpdatearticlemodalComponent } from './components/updatearticlemodal/updatearticlemodal.component'
 
 
 
@@ -38,7 +39,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown'
     RoundPipe,
     ModalComponent,
     ArticletitlePipe,
-    RolesdropdownComponent
+    RolesdropdownComponent,
+    UpdatearticlemodalComponent
   ],
   imports: [
     CommonModule,
