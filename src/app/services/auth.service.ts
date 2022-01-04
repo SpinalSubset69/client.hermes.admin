@@ -43,23 +43,24 @@ export class AuthService {
   }
 
   public validateUserToken(): boolean {
-    let isVerified:boolean = true;
-
-    this.verifyToken().subscribe(res => {
-      return true;
-    });
-
-    return isVerified;
+    return this.verifyToken();
   }
 
-  verifyToken():Observable<boolean>{
-    return this.http.get<PlainResponse>(`${this.baseApiUrl}/auth/verify`).pipe(
-      map(response => {
-        if(response.message === 'Authorized'){
-          return true;
-        }
-        return false;
-      })
-    )
+  private verifyToken():boolean{
+    const token = this.userToken ? this.userToken : localStorage.getItem('token') as string;
+    const expiresIn = localStorage.getItem('expiresIn');
+
+    const expiresDate = new Date();
+    expiresDate.setTime(Number(expiresIn));
+    console.log(expiresDate );
+    console.log(new Date());
+    if(!(expiresDate > new Date())){
+      localStorage.clear();
+      return false;
+    }
+
+
+
+    return token.length > 10 ? expiresDate > new Date() : false;
   }
 }

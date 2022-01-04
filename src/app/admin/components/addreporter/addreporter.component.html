@@ -34,7 +34,7 @@
         <input
           name="user_name"
           required
-          [(ngModel)]="reporter.user_name"
+          [(ngModel)]="reporter.userName"
           class="form-control"
           type="text"
         />
@@ -43,24 +43,53 @@
 
     <hr />
 
-    <span
-      *ngIf="f.submitted && f.form.controls['email'].errors"
-      class="text-danger animate__animated animate__fadeIn"
-      >Email es Obligatorio!</span
-    >
-    <br />
-    <label class="form" for="email">Email:</label>
-    <input
-      name="email"
-      email
-      required
-      [(ngModel)]="reporter.email"
-      class="form-control"
-      type="email"
-    />
+    <div class="row">
+      <div class="col-md-6">
+        <span
+        *ngIf="f.submitted && f.form.controls['email'].errors"
+        class="text-danger animate__animated animate__fadeIn"
+        >Email es Obligatorio!</span
+      >
+      <br />
+      </div>
+
+      <div class="col-md-6">
+
+        <span
+        *ngIf="f.submitted && !roleSelected"
+        class="text-danger animate__animated animate__fadeIn"
+        >Rol es Obligatorio!</span
+      >
+      <br />
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-md-6">
+        <label class="form" for="email">Email:</label>
+        <input
+          name="email"
+          email
+          required
+          [(ngModel)]="reporter.email"
+          class="form-control"
+          type="email"
+        />
+      </div>
+
+      <div class="col-md-6">
+        <label class="form" for="rolId">Rol:</label>
+        <div>
+          <app-rolesdropdown
+            (roleSelected)="selectedRole($event)"
+          ></app-rolesdropdown>
+        </div>
+      </div>
+    </div>
 
     <hr />
-
     <span
       *ngIf="f.submitted && f.form.controls['password'].errors"
       class="text-danger animate__animated animate__fadeIn"

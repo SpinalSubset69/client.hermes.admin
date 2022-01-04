@@ -1,6 +1,7 @@
 import { IArticle } from "./article";
 import { ICategory } from "./category";
 import { IReporter } from "./reporter";
+import { IRole } from "./Role";
 
 export interface ResponseWithReporter{
   message:string;
@@ -20,6 +21,11 @@ export interface ResponseWithCategory{
 export interface ResponseWithCategoryArray{
   message:string;
   data:ICategory[];
+}
+
+export interface ResponseWithRoleArray{
+  message:string;
+  data: IRole[];
 }
 
 export interface PlainResponse{

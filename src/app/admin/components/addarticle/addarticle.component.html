@@ -3,7 +3,7 @@
     <h1>Agregar Artículo Nuevo</h1>
     <i (click)="closeAddArticle()" class="fa fa-close"></i>
   </div>
-  <hr>
+  <hr />
   <form (submit)="addArticle(f)" #f="ngForm">
     <span
       *ngIf="f.submitted && f.form.controls['title'].errors"
@@ -22,27 +22,30 @@
 
     <hr />
 
-    <div class="row d-flex align-items-center">
-      <div class="col-md-6">
-        <span
-        *ngIf="f.submitted && f.form.controls['summary'].errors"
-        class="text-danger animate__animated animate__fadeIn"
-        >Resumen es obligatorio!</span
-      >
-      <br />
-      <label class="form" for="summay">Resumen de Nota:</label>
-      <input
-        name="summary"
-        required
-        [(ngModel)]="article.summary"
-        class="form-control"
-        type="text"
-      />
+    <span
+      *ngIf="f.submitted && f.form.controls['summary'].errors"
+      class="text-danger animate__animated animate__fadeIn"
+      >Resumen es obligatorio!</span
+    >
+    <br />
+    <div class="row">
 
+      <div class="col-md-6">
+        <label class="form" for="summay">Resumen de Nota:</label>
+        <input
+          name="summary"
+          required
+          [(ngModel)]="article.summary"
+          class="form-control"
+          type="text"
+        />
       </div>
 
       <div class="col-md-6">
-        <app-categorydropdown (onCategorySelect)="categorySelected($event)" ></app-categorydropdown>
+        <label class="form" for="category">Categoría:</label>
+        <div>
+          <app-categorydropdown (onCategorySelect)="categorySelected($event)" ></app-categorydropdown>
+        </div>
       </div>
     </div>
 

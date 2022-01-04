@@ -10,7 +10,7 @@
 .content-wrapper{
   background: var(--color-white);
   margin: 0;
-  height: 95vh;
+  height: 100vh;
   overflow: scroll;
   position: relative;
 }

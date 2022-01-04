@@ -15,7 +15,7 @@ import { CategoryService } from 'src/app/services/category.service';
 })
 export class CategorydropdownComponent implements OnInit {
   categories: Category[] = [];
-  categorySelected: string = 'Seleccione una categoría...';
+  categorySelected: string = 'Categoría ';
   width: number = 0;
   @Output() onCategorySelect = new EventEmitter<Category>();
 
@@ -49,4 +49,6 @@ export class CategorydropdownComponent implements OnInit {
       dropdownd?.setAttribute('style', 'position:absolute');
     }
   }
+
+
 }

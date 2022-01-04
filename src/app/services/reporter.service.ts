@@ -8,6 +8,7 @@ import { IReporter } from '../interfaces/reporter';
 import { Reporter } from '../models/reporter';
 import { ArticlesPagination, IArticle } from '../interfaces/article';
 import { RequestParams } from '../interfaces/params';
+import { ImageUploadRequest } from '../models/ImageUploadRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,7 @@ export class ReporterService {
       })
     );
   }
-  addImageReporter(image:FormData, reporter_id:number):Observable<PlainResponse>{
+  addImageReporter(image:ImageUploadRequest, reporter_id:number):Observable<PlainResponse>{
     return this.http.post<PlainResponse>(`${this.baseApiUrl}/reporter/fileupload/${reporter_id}`,image);
   }
 

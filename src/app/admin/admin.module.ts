@@ -17,6 +17,8 @@ import { ArticleimagePipe } from './pipes/articleimage.pipe';
 import { RoundPipe } from './pipes/round.pipe';
 import { ModalComponent } from './components/modal/modal.component';
 import { ArticletitlePipe } from './pipes/articletitle.pipe';
+import { RolesdropdownComponent } from './components/rolesdropdown/rolesdropdown.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown'
 
 
 
@@ -35,13 +37,15 @@ import { ArticletitlePipe } from './pipes/articletitle.pipe';
     ArticlecardComponent,
     RoundPipe,
     ModalComponent,
-    ArticletitlePipe
+    ArticletitlePipe,
+    RolesdropdownComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     RouterModule,
     FormsModule,
+    BsDropdownModule.forRoot()
   ]
 })
 export class AdminModule { }

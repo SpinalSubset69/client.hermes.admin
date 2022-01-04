@@ -24,13 +24,6 @@ export class AuthGuard implements CanActivate , CanActivateChild{
   }
 
   canActivate(): boolean {
-    this.authService.verifyToken().subscribe(res => {
-      this.isAuthorized = res;
-    });
-
-    if(!this.isAuthorized){
-      this.router.navigateByUrl('/auth')
-    }
-    return this.isAuthorized;
+    return this.authService.validateUserToken();
   }
 }
